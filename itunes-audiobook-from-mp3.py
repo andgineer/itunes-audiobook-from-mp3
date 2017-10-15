@@ -44,6 +44,8 @@ def get_opts():
                                 OPT_TRACK_NUM_NO_TRACK_NUM)))
     parser.add_argument('--fix', action='store_true', dest='fix',
                         help=('Process and fix files.'))
+    parser.add_argument('--title-prefix', default='{track:04} - ', dest='title_prefix',
+                        help=('Prefix each file title with the track number for the file.'))
     parser.add_argument('--dry', dest='dry',
                         help=('Just dry run without files fix.'))
     opts, _ = parser.parse_known_args()
@@ -77,14 +79,23 @@ def fix_mp3_tages():
                 if tag_name in opts.set_tags:
                     audio_file.tag.__setattr__(tag_name, opts.set_tags[tag_name])
                 else:
-                    audio_file.tag.__setattr__(tag_name, fix_encoding(audio_file.tag.__getattribute__(tag_name)))
+                    if audio_file.tag.__getattribute__(tag_name):
+                        audio_file.tag.__setattr__(tag_name, fix_encoding(audio_file.tag.__getattribute__(tag_name)))
             audio_file.tag.genre = 'Audiobook'
+            audio_file.tag.mediatype = 'Audiobook'
+            #audio_file.tag.compilation = '1'
+            #audiofile.tag.images.set(3, open('cover.jpg','rb').read(), 'image/jpeg')
             if opts.track_num:
                 audio_file.tag.track_num = track
+                audio_file.tag.part = '%04d' % track
+                audio_file.tag.chapter = track
+                audio_file.tag.title = (opts.title_prefix + '{name}').format(
+                    name=audio_file.tag.title,
+                    track=track)
                 track += 1
-            print('{} by {}, album {} by {}, genre {}, num {}, '.format(
+            print('{} by {}, album {} by {}, genre {}, part {}'.format(
                 audio_file.tag.title, audio_file.tag.artist, audio_file.tag.album, audio_file.tag.album_artist,
-                audio_file.tag.genre, audio_file.tag.track_num))
+                audio_file.tag.genre, audio_file.tag.part))
             if opts.fix:
                 audio_file.tag.save(version=eyed3.id3.ID3_DEFAULT_VERSION,encoding='utf-8')
 
