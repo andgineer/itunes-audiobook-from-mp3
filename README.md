@@ -1,12 +1,12 @@
 # iTunes audiobooks from mp3
 
-Converts mp3 files tages to use in iTunes/iPhone audiobooks. 
+Converts mp3 files tags to use in iTunes/iPhone audiobooks. 
 
 Fixes sort order. 
 
 Supports cyrillic.
 
-Details in [my blog's article](http://masterandrey.com/posts/en/itunes_audiobook_from_mp3/).
+Details in [my blog's article](https://sorokin.engineer/posts/en/itunes_audiobook_from_mp3.html).
 
 
 ## MacOS
@@ -14,7 +14,7 @@ Details in [my blog's article](http://masterandrey.com/posts/en/itunes_audiobook
   brew update
   brew install libmagic
   
-## Python3  
+## Python dependencies  
 
   pip install eyed3
   
