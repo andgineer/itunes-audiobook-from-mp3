@@ -1,1 +1,4 @@
 eyed3
+
+pytest
+pytest-cov

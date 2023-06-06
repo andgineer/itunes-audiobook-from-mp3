@@ -1,3 +1,4 @@
+[![Build Status](https://github.com/andgineer/itunes-audiobook-from-mp3/workflows/ci/badge.svg)](https://github.com/andgineer/itunes-audiobook-from-mp3/actions)
 # iTunes audiobooks from mp3
 
 Converts mp3 files tags to use in iTunes/iPhone audiobooks. 
@@ -16,10 +17,10 @@ Details in [my blog's article](https://sorokin.engineer/posts/en/itunes_audioboo
   
 ## Python dependencies  
 
-  pip install eyed3
+  . ./activate.sh
   
 # Usage
-### usage: ios-audiobook-from-mp3.py 
+### usage: src/itunes_audiobook_from_mp3.py 
  [folder]
  [-h] 
  [--encoding ENCODING]
@@ -51,7 +52,7 @@ Details in [my blog's article](https://sorokin.engineer/posts/en/itunes_audioboo
 
 #### For example:
 
-  ios-audiobook-from-mp3 --fix --set-tag="album_artist/Юрий Заборовский (Ардис)"
+  src/itunes_audiobook_from_mp3 --fix --set-tag="album_artist/Юрий Заборовский (Ардис)"
   
   Convers all `.mp3` files in current folder and subfolders, fix encoding supposing
   that original encoding was `Windows 1251`, and change tag album artist.
