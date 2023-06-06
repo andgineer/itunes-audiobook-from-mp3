@@ -54,8 +54,8 @@ Details in [my blog's article](https://sorokin.engineer/posts/en/itunes_audioboo
 
   src/itunes_audiobook_from_mp3 --fix --set-tag="album_artist/Юрий Заборовский (Ардис)"
   
-  Convers all `.mp3` files in current folder and subfolders, fix encoding supposing
-  that original encoding was `Windows 1251`, and change tag album artist.
-  Also it will set `track_num` mp3 tag to file number as ordered by file name.
-  
+- Convers all `.mp3` files in current folder and subfolders, fix encoding supposing
+- that original encoding was `Windows 1251`, and change tag album artist.
+- Also it will set `track_num` mp3 tag to file number as ordered by file name.
+ 
   
