@@ -15,19 +15,21 @@ Details in [my blog's article](https://sorokin.engineer/posts/en/itunes_audioboo
   brew update
   brew install libmagic
   
-## Python dependencies  
+# Python dependencies  
+
+Note the dot before `./activate.sh`:
 
   . ./activate.sh
   
 # Usage
-### usage: src/itunes_audiobook_from_mp3.py 
- [folder]
- [-h] 
- [--encoding ENCODING]
- [--extension EXTENSION]
- [--set-tag [SET_TAG [SET_TAG ...]]]
- [--track-num TRACK_NUM] [--fix FIX]
- [--dry DRY]
+    python src/itunes_audiobook_from_mp3.py 
+         [folder]
+         [-h] 
+         [--encoding ENCODING]
+         [--extension EXTENSION]
+         [--set-tag [SET_TAG [SET_TAG ...]]]
+         [--track-num TRACK_NUM] [--fix FIX]
+         [--dry DRY]
 
 #### positional arguments:
 
@@ -52,7 +54,7 @@ Details in [my blog's article](https://sorokin.engineer/posts/en/itunes_audioboo
 
 #### For example:
 
-  src/itunes_audiobook_from_mp3 --fix --set-tag="album_artist/Юрий Заборовский (Ардис)"
+  python src/itunes_audiobook_from_mp3 --fix --set-tag="album_artist/Юрий Заборовский (Ардис)"
   
 - Convers all `.mp3` files in current folder and subfolders, fix encoding supposing
 - that original encoding was `Windows 1251`, and change tag album artist.
