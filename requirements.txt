@@ -2,3 +2,9 @@ eyed3
 
 pytest
 pytest-cov
+pylint
+mypy
+pre-commit
+pip-tools
+black
+pydocstyle
