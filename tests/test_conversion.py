@@ -16,7 +16,7 @@ def test_fix_encoding():
 
 @patch("itunes_audiobook_from_mp3.eyed3.load")
 @patch("os.walk")
-def test_fix_mp3_tags(mock_os_walk, mock_eyed3_load):
+def test_fix_mp3_tags_mock(mock_os_walk, mock_eyed3_load):
     mock_os_walk.return_value = [("dir", [], ["file1.mp3"])]
     mock_audio_file = Mock()
     tag = Mock(artist="Artist", title="Title", album="Album", album_artist="Album Artist")
@@ -34,3 +34,26 @@ def test_fix_mp3_tags(mock_os_walk, mock_eyed3_load):
         )
     )
     assert mock_audio_file.tag.artist
+
+
+def test_fix_mp3_tags_real_mp3():
+    audio_files = fix_mp3_tags(
+        Mock(
+            folder="tests/resources",
+            encoding="cp1251",
+            extension="mp3",
+            set_tag="tag1/value1",
+            set_tags={"tag1": "value1"},
+            track_num="sort-file-names",
+            title_prefix="test_prefix - ",
+            dry=True,
+        )
+    )
+    assert len(audio_files) == 1
+    assert audio_files[0].tag.artist == "Ф. М. Достоевский"
+    assert (
+        audio_files[0].tag.title
+        == "test_prefix - БРАТЬЯ КАРАМАЗОВЫ. Часть 2. Книга 04. Глава 02. Фрагмент 01"
+    )
+    assert audio_files[0].tag.album == "Mp3-КНИГА"
+    assert audio_files[0].tag.tag1 == "value1"
