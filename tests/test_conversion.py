@@ -26,7 +26,7 @@ def test_fix_mp3_tags_mock(mock_os_walk, mock_eyed3_load):
         Mock(
             folder="test_folder",
             encoding="cp1251",
-            extension="mp3",
+            extension=".mp3",
             set_tags={"tag1": "value1"},
             track_num="sort-file-names",
             title_prefix="test_prefix - ",
@@ -41,7 +41,7 @@ def test_fix_mp3_tags_real_mp3():
         Mock(
             folder="tests/resources",
             encoding="cp1251",
-            extension="mp3",
+            extension=".mp3",
             set_tag="tag1/value1",
             set_tags={"tag1": "value1"},
             track_num="sort-file-names",
