@@ -1,13 +1,14 @@
 import pathlib
+import sys
 from argparse import ArgumentParser, Namespace
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 import eyed3
 import eyed3.id3
 from eyed3 import AudioFile
 
 OPT_ENCODING_NO_ENCODING = "none"
-OPT_TRACK_NUM_BY_TAG_TITLE = "title"
+OPT_TRACK_NUM_BY_TAG_TITLE = "tag-"
 OPT_TRACK_NUM_BY_FILE_NAMES = "name"
 
 
@@ -22,7 +23,7 @@ def fix_encoding(text: str, fix_encoding: str) -> str:
     return text
 
 
-def get_opts() -> Namespace:
+def get_opts() -> Tuple[Namespace, ArgumentParser]:
     """Get CLI options."""
     parser = ArgumentParser(description="Fixes mp3 tags for iOS audiobooks.")
     parser.add_argument(
@@ -58,7 +59,7 @@ def get_opts() -> Namespace:
         help=(
             f"""Sort files and set mp3 tag `track_num`:
             TRACK_NUM=`{OPT_TRACK_NUM_BY_FILE_NAMES}` - sort by names;
-            TRACK_NUM=`{OPT_TRACK_NUM_BY_TAG_TITLE}` - sort by mp3 tag `title`."""
+            TRACK_NUM=`{OPT_TRACK_NUM_BY_TAG_TITLE}<TAG>` - sort by mp3 tag with name <TAG>."""
         ),
     )
     parser.add_argument(
@@ -67,13 +68,15 @@ def get_opts() -> Namespace:
         dest="title_prefix",
         help="Prefix each file title with the track number for the file.",
     )
-    parser.add_argument("--dry", dest="dry", help="Just dry run without files fix.")
+    parser.add_argument(
+        "--dry", dest="dry", help="If DRY=true, just dry run without changing files."
+    )
     opts, _ = parser.parse_known_args()
     opts.set_tags = {}
     if opts.set_tag:
         for tag_string in opts.set_tag:
             opts.set_tags.update({tag_string.split("/")[0]: tag_string.split("/")[1]})
-    return opts
+    return opts, parser
 
 
 def fix_mp3_tags(opts: Namespace) -> List[AudioFile]:
@@ -130,15 +133,23 @@ def get_files_list(folder: str, extension: str, track_num: Optional[str]) -> Lis
     if track_num:
         if track_num == OPT_TRACK_NUM_BY_FILE_NAMES:
             paths = sorted(paths)
-        elif track_num == OPT_TRACK_NUM_BY_TAG_TITLE:
-            paths = sorted(paths, key=lambda path: eyed3.load(path).tag.title)  # type: ignore
+        elif track_num.startswith(OPT_TRACK_NUM_BY_TAG_TITLE):
+            tag_name = track_num[len(OPT_TRACK_NUM_BY_TAG_TITLE) :]
+            paths = sorted(paths, key=lambda path: getattr(eyed3.load(path).tag, tag_name))  # type: ignore
+        else:
+            raise ValueError(f"Unknown track_num option: {track_num}")
     return paths
 
 
 def main() -> None:
     """Do the work."""
-    opts = get_opts()
-    fix_mp3_tags(opts)
+    opts, parser = get_opts()
+    try:
+        fix_mp3_tags(opts)
+    except ValueError as e:
+        print(f"\nError: {e}\n")
+        parser.print_help()
+        sys.exit(1)
 
 
 if __name__ == "__main__":
