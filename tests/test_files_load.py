@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock, patch
 
-from itunes_audiobook_from_mp3 import (
+from audiobook_tags.main import (
     OPT_TRACK_NUM_BY_FILE_NAMES,
     OPT_TRACK_NUM_BY_TAG_TITLE,
     fix_mp3_tags,
@@ -23,7 +23,7 @@ def eye3d_load(file_path):
 
 
 def test_fix_mp3_tags_no_sorting(opts):
-    with patch("itunes_audiobook_from_mp3.pathlib.Path.glob", return_value=["ba.mp3", "ab.mp3"]):
+    with patch("audiobook_tags.main.pathlib.Path.glob", return_value=["ba.mp3", "ab.mp3"]):
         with patch("eyed3.load") as mock_load:
             mock_load.side_effect = eye3d_load
             audio_files = fix_mp3_tags(opts)
@@ -34,7 +34,7 @@ def test_fix_mp3_tags_no_sorting(opts):
 
 def test_fix_mp3_tags_sorted_by_file_names(opts):
     opts.track_num = OPT_TRACK_NUM_BY_FILE_NAMES
-    with patch("itunes_audiobook_from_mp3.pathlib.Path.glob", return_value=["ba.mp3", "ab.mp3"]):
+    with patch("audiobook_tags.main.pathlib.Path.glob", return_value=["ba.mp3", "ab.mp3"]):
         with patch("eyed3.load") as mock_load:
             mock_load.side_effect = eye3d_load
             audio_files = fix_mp3_tags(opts)
@@ -45,7 +45,7 @@ def test_fix_mp3_tags_sorted_by_file_names(opts):
 
 def test_fix_mp3_tags_sorted_by_tag_title(opts):
     opts.track_num = f"{OPT_TRACK_NUM_BY_TAG_TITLE}title"
-    with patch("itunes_audiobook_from_mp3.pathlib.Path.glob", return_value=["ba.mp3", "ab.mp3"]):
+    with patch("audiobook_tags.main.pathlib.Path.glob", return_value=["ba.mp3", "ab.mp3"]):
         with patch("eyed3.load") as mock_load:
             mock_load.side_effect = eye3d_load
             audio_files = fix_mp3_tags(opts)
