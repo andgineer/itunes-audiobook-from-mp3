@@ -1,11 +1,10 @@
-[![Build Status](https://github.com/andgineer/itunes-audiobook-from-mp3/workflows/ci/badge.svg)](https://github.com/andgineer/itunes-audiobook-from-mp3/actions)
-# iTunes audiobooks from mp3
+﻿[![Build Status](https://github.com/andgineer/itunes-audiobook-from-mp3/workflows/ci/badge.svg)](https://github.com/andgineer/itunes-audiobook-from-mp3/actions)
+# Audiobooks from mp3 with broken tags
 
-Converts mp3 files tags to use in iTunes/iPhone audiobooks. 
+Fix mp3 files tags to convert them into iTunes/iPhone audiobooks..
 
-Fixes sort order. 
-
-Supports cyrillic.
+- Fixes sort order.
+- Supports messed encoding like cyrillic Win1251.
 
 Details in [my blog's article](https://sorokin.engineer/posts/en/itunes_audiobook_from_mp3.html).
 
@@ -14,17 +13,17 @@ Details in [my blog's article](https://sorokin.engineer/posts/en/itunes_audioboo
 
   brew update
   brew install libmagic
-  
-# Python dependencies  
+
+# Python dependencies
 
 Note the dot before `./activate.sh`:
 
   . ./activate.sh
-  
+
 # Usage
-    python src/itunes_audiobook_from_mp3.py 
+    python src/itunes_audiobook_from_mp3.py
          [folder]
-         [-h] 
+         [-h]
          [--encoding ENCODING]
          [--extension EXTENSION]
          [--set-tag [SET_TAG [SET_TAG ...]]]
@@ -55,9 +54,7 @@ Note the dot before `./activate.sh`:
 #### For example:
 
   python src/itunes_audiobook_from_mp3 --fix --set-tag="album_artist/Юрий Заборовский (Ардис)"
-  
+
 - Convers all `.mp3` files in current folder and subfolders, fix encoding supposing
 - that original encoding was `Windows 1251`, and change tag album artist.
 - Also it will set `track_num` mp3 tag to file number as ordered by file name.
- 
-  
