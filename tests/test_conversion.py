@@ -2,7 +2,7 @@ from unittest.mock import Mock, patch
 
 import pytest
 
-from audiobook_tags.main import fix_encoding, fix_mp3_tags
+from audiobook_tags.tags import fix_encoding, fix_mp3_tags
 
 
 def test_fix_encoding():
@@ -14,7 +14,7 @@ def test_fix_encoding():
         fix_encoding("abc", fix_encoding="invalid_encoding")
 
 
-@patch("audiobook_tags.main.eyed3.load")
+@patch("audiobook_tags.tags.eyed3.load")
 @patch("os.walk")
 def test_fix_mp3_tags_mock(mock_os_walk, mock_eyed3_load, opts):
     mock_os_walk.return_value = [("dir", [], ["file1.mp3"])]
