@@ -20,29 +20,30 @@ You should have Python 3.6+ installed.
     Fixes mp3 tags for iOS audiobooks.
 
     positional arguments:
-      folder                Folder to process, do not add file name.
+      folder                Folder to process. By default current folder.
 
     options:
       -h, --help            show this help message and exit
-      --encoding ENCODING   mp3 tags encoding. "none" if you do not need mp3 tags encoding fix.
-      --extension EXTENSION
-                            Files extension including dot, for example `.mp3`.
-      --set-tag [SET_TAG ...]
+      --mask MASK, -m MASK  Files mask. By default .mp3
+      --encoding ENCODING, -e ENCODING
+                            mp3 tags encoding. "none" if you do not need mp3 tags encoding fix. By default "cp1251".
+      --tag [SET_TAG ...], -t [SET_TAG ...]
                             Change mp3 tag to specified string. Format "tag-name/tag-value".
-      --track-num TRACK_NUM
+      --num TRACK_NUM, -n TRACK_NUM
                             Sort files and set mp3 tag `track_num`: TRACK_NUM=`name` - sort by names; TRACK_NUM=`tag-<TAG>` - sort by mp3 tag with name <TAG>.
-      --title-prefix TITLE_PREFIX
-                            Prefix each file title with the track number for the file.
-      --dry                 Dry run without changing files.
+      --prefix TITLE_PREFIX, -p TITLE_PREFIX
+                            Add prefix to title tags. By default `{track:04} - ` if `--num` and no prefix if not.
+      --dry, -d             Dry run without changing files.
 
 ## Example:
 
-    audiobook-tags --set-tag="album_artist/Юрий Заборовский (Ардис)" --track-num="name"
+    audiobook-tags --tag="album_artist/Юрий Заборовский (Ардис)" --num="name" --prefix=""
 
-- Convers all `.mp3` files in current folder and subfolders
+- converts all `.mp3` files in current folder and subfolders
 - fix encoding supposing that original encoding was `Windows 1251`
 - change tag album artist.
-- set `track_num` mp3 tag to file number as ordered by file name
+- set `track_num` mp3 tag to file number as ordered by file name.
+  But do not add the track number to the title (`--prefix="""`).
 
 # Development
 

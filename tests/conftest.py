@@ -6,8 +6,8 @@ import pytest
 @pytest.fixture
 def opts():
     return Namespace(
-        folder="/tmp",
-        extension="mp3",
+        folder="/tmp/",
+        mask=".mp3",
         set_tags=[],
         encoding="none",
         dry=False,

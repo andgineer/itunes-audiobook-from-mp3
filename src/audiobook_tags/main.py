@@ -9,6 +9,9 @@ from audiobook_tags.tags import (
     fix_mp3_tags,
 )
 
+DEFAULT_ENCODING = "cp1251"
+FILE_MASK = ".mp3"
+
 
 def get_opts() -> Tuple[Namespace, ArgumentParser]:
     """Get CLI options."""
@@ -18,29 +21,33 @@ def get_opts() -> Tuple[Namespace, ArgumentParser]:
         default=".",
         metavar="folder",
         nargs="?",
-        help="Folder to process, do not add file name.",
+        help="Folder to process. By default current folder.",
+    )
+    parser.add_argument(
+        "--mask",
+        "-m",
+        default=FILE_MASK,
+        dest="mask",
+        help=f"Files mask. By default {FILE_MASK}",
     )
     parser.add_argument(
         "--encoding",
-        default="cp1251",
+        "-e",
+        default=DEFAULT_ENCODING,
         dest="encoding",
-        help=f'mp3 tags encoding. "{OPT_ENCODING_NO_ENCODING}" if you do not need mp3 tags encoding fix.',
+        help=f'mp3 tags encoding. "{OPT_ENCODING_NO_ENCODING}" if you do not need mp3 tags encoding fix. By default "{DEFAULT_ENCODING}".',
     )
     parser.add_argument(
-        "--extension",
-        default=".mp3",
-        dest="extension",
-        help="File" "s extension including dot, for example `.mp3`.",
-    )
-    parser.add_argument(
-        "--set-tag",
+        "--tag",
+        "-t",
         default=None,
         dest="set_tag",
         nargs="*",
         help='Change mp3 tag to specified string. Format "tag-name/tag-value".',
     )
     parser.add_argument(
-        "--track-num",
+        "--num",
+        "-n",
         default=None,
         dest="track_num",
         help=(
@@ -50,13 +57,15 @@ def get_opts() -> Tuple[Namespace, ArgumentParser]:
         ),
     )
     parser.add_argument(
-        "--title-prefix",
-        default="{track:04} - ",
+        "--prefix",
+        "-p",
+        default=None,
         dest="title_prefix",
-        help="Prefix each file title with the track number for the file.",
+        help="Add prefix to title tags. By default `{track:04} - ` if `--num` and no prefix if not.",
     )
     parser.add_argument(
         "--dry",
+        "-d",
         dest="dry",
         action="store_true",
         default=False,
@@ -66,7 +75,9 @@ def get_opts() -> Tuple[Namespace, ArgumentParser]:
     opts.set_tags = {}
     if opts.set_tag:
         for tag_string in opts.set_tag:
-            opts.set_tags.update({tag_string.split("/")[0]: tag_string.split("/")[1]})
+            opts.set_tags[tag_string.split("/")[0]] = tag_string.split("/")[1]
+    if opts.title_prefix is None:
+        opts.title_prefix = "{track:04} - " if opts.track_num else ""
     return opts, parser
 
 

@@ -12,7 +12,7 @@ OPT_TRACK_NUM_BY_FILE_NAMES = "name"
 
 def fix_mp3_tags(opts: Namespace) -> List[AudioFile]:
     """Fix mp3 tags."""
-    paths = get_files_list(opts.folder, opts.extension, opts.track_num)
+    paths = get_files_list(opts.folder, opts.mask, opts.track_num)
 
     result = []
     track = 1
@@ -63,7 +63,7 @@ def get_files_list(folder: str, extension: str, track_num: Optional[str]) -> Lis
 
     Sort files according `track_num` option.
     """
-    paths = list(pathlib.Path(folder).glob(f"**/*{extension}"))
+    paths = list(pathlib.Path(folder).glob(f"*{extension}"))
     if track_num:
         if track_num == OPT_TRACK_NUM_BY_FILE_NAMES:
             paths = sorted(paths)
