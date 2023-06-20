@@ -49,12 +49,16 @@ def fix_mp3_tags(opts: Namespace) -> List[AudioFile]:
                     f"genre {audio_file.tag.genre}, part {audio_file.tag.part}"
                 )
             print()
-            if not opts.dry:
-                audio_file.tag.save(version=eyed3.id3.ID3_DEFAULT_VERSION, encoding="utf-8")
             result.append(audio_file)
         except Exception as e:
             print(f"Error processing {file_path}: {e}")
-            raise
+    if any(isinstance(file, Exception) for file in result):
+        print("(!) Errors occurred. No files were changed.")
+    elif opts.dry:
+        print("(!) Dry run. No files were changed.")
+    else:
+        for audio_file in result:
+            audio_file.tag.save(version=eyed3.id3.ID3_DEFAULT_VERSION, encoding="utf-8")
     return result
 
 
