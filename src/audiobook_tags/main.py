@@ -6,7 +6,7 @@ from audiobook_tags.tags import (
     OPT_ENCODING_NO_ENCODING,
     OPT_TRACK_NUM_BY_FILE_NAMES,
     OPT_TRACK_NUM_BY_TAG_TITLE,
-    fix_mp3_tags,
+    process_files,
 )
 
 DEFAULT_ENCODING = "cp1251"
@@ -85,7 +85,7 @@ def main() -> None:
     """Do the work."""
     opts, parser = get_opts()
     try:
-        fix_mp3_tags(opts)
+        process_files(opts)
     except ValueError as e:
         print(f"\nError: {e}\n")
         parser.print_help()

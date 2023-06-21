@@ -2,7 +2,7 @@ from unittest.mock import Mock
 
 import pytest
 
-from audiobook_tags.tags import fix_encoding, fix_mp3_tags
+from audiobook_tags.tags import fix_encoding, process_files
 
 
 def test_fix_encoding():
@@ -15,7 +15,7 @@ def test_fix_encoding():
 
 
 def test_fix_mp3_tags_real_mp3(opts):
-    audio_files = fix_mp3_tags(
+    audio_files = process_files(
         Mock(
             folder="tests/resources/",
             encoding="cp1251",

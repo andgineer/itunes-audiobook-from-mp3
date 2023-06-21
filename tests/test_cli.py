@@ -3,7 +3,7 @@ from unittest.mock import Mock, patch
 from audiobook_tags.main import get_opts, main
 
 
-@patch("audiobook_tags.main.fix_mp3_tags")
+@patch("audiobook_tags.main.process_files")
 @patch("audiobook_tags.main.get_opts")
 def test_main(mock_get_opts, mock_fix_mp3_tags):
     mock_get_opts.return_value = (Mock(), Mock())
