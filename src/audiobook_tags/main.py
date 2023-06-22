@@ -52,8 +52,8 @@ def get_opts() -> Tuple[Namespace, ArgumentParser]:
         dest="track_num",
         help=(
             f"""Sort files and set mp3 tag `track_num`:
-            TRACK_NUM=`{OPT_TRACK_NUM_BY_FILE_NAMES}` - sort by names;
-            TRACK_NUM=`{OPT_TRACK_NUM_BY_TAG_TITLE}<TAG>` - sort by mp3 tag with name <TAG>."""
+            --num="{OPT_TRACK_NUM_BY_FILE_NAMES}" - sort by names;
+            --num="{OPT_TRACK_NUM_BY_TAG_TITLE}<TAG>" - sort by mp3 tag with name <TAG>. For example to sort by title tag use --num="{OPT_TRACK_NUM_BY_TAG_TITLE}title"."""
         ),
     )
     parser.add_argument(

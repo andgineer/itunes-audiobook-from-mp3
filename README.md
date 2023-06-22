@@ -10,9 +10,9 @@ Details in [my blog's article](https://sorokin.engineer/posts/en/itunes_audioboo
 
 ## Installation
 
-You should have Python 3.6+ installed.
+You should have Python installed.
 
-    pip install audiobook-tags
+    python -m pip install audiobook-tags
 
 ## Usage
     audiobook-tags [-h] [--encoding ENCODING] [--extension EXTENSION] [--set-tag [SET_TAG ...]] [--track-num TRACK_NUM] [--title-prefix TITLE_PREFIX] [--dry] [folder]
@@ -30,7 +30,10 @@ You should have Python 3.6+ installed.
       --tag [SET_TAG ...], -t [SET_TAG ...]
                             Change mp3 tag to specified string. Format "tag-name/tag-value".
       --num TRACK_NUM, -n TRACK_NUM
-                            Sort files and set mp3 tag `track_num`: TRACK_NUM=`name` - sort by names; TRACK_NUM=`tag-<TAG>` - sort by mp3 tag with name <TAG>.
+                            Sort files and set mp3 tag `track_num`:
+                              --num="name" - sort by names;
+                              --num="tag-<TAG>" - sort by mp3 tag with name <TAG>.
+                                For example to sort by title tag use --num="tag-title".
       --prefix TITLE_PREFIX, -p TITLE_PREFIX
                             Add prefix to title tags. By default `{track:04} - ` if `--num` and no prefix if not.
       --dry, -d             Dry run without changing files.
