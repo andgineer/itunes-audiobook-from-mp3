@@ -59,3 +59,5 @@ You should have Python 3.6+ installed.
 Note the dot before `./activate.sh`:
 
   . ./activate.sh
+
+We use [eyeD3](https://eyed3.readthedocs.io/en/latest/) to work with mp3 tags.
