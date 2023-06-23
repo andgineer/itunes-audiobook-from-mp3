@@ -7,7 +7,7 @@ import pytest
 def opts():
     return Namespace(
         folder="/tmp/",
-        mask=".mp3",
+        suffix="mp3",
         set_tags=[],
         encoding="none",
         dry=False,

@@ -10,7 +10,7 @@ from audiobook_tags.tags import (
 )
 
 DEFAULT_ENCODING = "cp1251"
-FILE_MASK = ".mp3"
+FILE_SUFFIX_DEFAULT = "mp3"
 
 
 def get_opts() -> Tuple[Namespace, ArgumentParser]:
@@ -24,11 +24,11 @@ def get_opts() -> Tuple[Namespace, ArgumentParser]:
         help="Folder to process. By default current folder.",
     )
     parser.add_argument(
-        "--mask",
-        "-m",
-        default=FILE_MASK,
-        dest="mask",
-        help=f"Files mask. By default {FILE_MASK}",
+        "--suffix",
+        "-s",
+        default=FILE_SUFFIX_DEFAULT,
+        dest="suffix",
+        help=f"Files suffix. By default {FILE_SUFFIX_DEFAULT}",
     )
     parser.add_argument(
         "--encoding",
@@ -71,7 +71,7 @@ def get_opts() -> Tuple[Namespace, ArgumentParser]:
         default=False,
         help="Dry run without changing files.",
     )
-    opts, _ = parser.parse_known_args()
+    opts = parser.parse_args()
     opts.set_tags = {}
     if opts.set_tag:
         for tag_string in opts.set_tag:

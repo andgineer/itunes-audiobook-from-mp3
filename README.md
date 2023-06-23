@@ -24,7 +24,8 @@ You should have Python installed.
 
     options:
       -h, --help            show this help message and exit
-      --mask MASK, -m MASK  Files mask. By default .mp3
+      --suffix SUFFIX, -s SUFFIX
+                            Files suffix. By default mp3
       --encoding ENCODING, -e ENCODING
                             mp3 tags encoding. "none" if you do not need mp3 tags encoding fix. By default "cp1251".
       --tag [SET_TAG ...], -t [SET_TAG ...]
@@ -42,7 +43,7 @@ You should have Python installed.
 
     audiobook-tags --tag="album_artist/Юрий Заборовский (Ардис)" --num="name" --prefix=""
 
-- converts all `.mp3` files in current folder and subfolders
+- converts all `mp3` files in current folder and subfolders
 - fix encoding supposing that original encoding was `Windows 1251`
 - change tag album artist.
 - set `track_num` mp3 tag to file number as ordered by file name.

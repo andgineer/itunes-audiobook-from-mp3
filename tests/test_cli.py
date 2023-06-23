@@ -19,7 +19,7 @@ def test_get_opts():
             Mock(
                 folder="test_folder",
                 encoding="cp1251",
-                extension=".mp3",
+                suffix="mp3",
                 set_tag=["tag1/value1", "tag2/value2"],
                 track_num="name",
                 title_prefix="test_prefix - ",

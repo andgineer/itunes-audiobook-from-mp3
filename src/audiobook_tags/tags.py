@@ -12,7 +12,7 @@ OPT_TRACK_NUM_BY_FILE_NAMES = "name"
 
 def process_files(opts: Namespace) -> List[AudioFile]:
     """Scan files and fix mp3 tags."""
-    paths = get_files_list(opts.folder, opts.mask, opts.track_num)
+    paths = get_files_list(opts.folder, opts.suffix, opts.track_num)
     result = []
     track = 1
     for file_path in paths:
@@ -21,7 +21,9 @@ def process_files(opts: Namespace) -> List[AudioFile]:
             result.append(audio_file)
         except Exception as e:
             print(f"Error processing {file_path}: {e}")
-    if any(isinstance(file, Exception) for file in result):
+    if not result:
+        print(f"(!) No files were found in folder `{opts.folder}` with suffix {opts.suffix}.")
+    elif any(isinstance(file, Exception) for file in result):
         print("(!) Errors occurred. No files were changed.")
     elif opts.dry:
         print("(!) Dry run. No files were changed.")
@@ -70,12 +72,12 @@ def fix_file_tags(file_path: pathlib.Path, opts: Namespace, track: int) -> Audio
     return audio_file
 
 
-def get_files_list(folder: str, extension: str, track_num: Optional[str]) -> List[pathlib.Path]:
+def get_files_list(folder: str, suffix: str, track_num: Optional[str]) -> List[pathlib.Path]:
     """Load audio files filtered by extension.
 
     Sort files according `track_num` option.
     """
-    paths = list(pathlib.Path(folder).glob(f"**/*{extension}"))
+    paths = list(pathlib.Path(folder).glob(f"**/*.{suffix}"))
     if track_num:
         if track_num == OPT_TRACK_NUM_BY_FILE_NAMES:
             paths = sorted(paths)

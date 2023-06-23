@@ -19,7 +19,7 @@ def test_fix_mp3_tags_real_mp3(opts):
         Mock(
             folder="tests/resources/",
             encoding="cp1251",
-            mask=".mp3",
+            suffix="mp3",
             set_tag="tag1/value1",
             set_tags={"tag1": "value1"},
             track_num="name",
