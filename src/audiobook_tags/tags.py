@@ -83,7 +83,7 @@ def get_files_list(folder: str, suffix: str, track_num: Optional[str]) -> List[p
             paths = sorted(paths)
         elif track_num.startswith(OPT_TRACK_NUM_BY_TAG_TITLE):
             tag_name = track_num[len(OPT_TRACK_NUM_BY_TAG_TITLE) :]
-            paths = sorted(paths, key=lambda path: getattr(eyed3.load(path).tag, tag_name))  # type: ignore
+            paths = sorted(paths, key=lambda path: getattr(eyed3.load(path).tag, tag_name))
         else:
             raise ValueError(f"Unknown track_num option: {track_num}")
     return paths
