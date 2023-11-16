@@ -9,10 +9,16 @@ Fix mp3 files tags to convert them into iTunes/iPhone audiobooks..
 Details in [my blog's article](https://sorokin.engineer/posts/en/itunes_audiobook_from_mp3.html).
 
 ## Installation
+Install using [`pipx`](https://pypa.github.io/pipx/) for isolated environments, which prevents interference
+with your system's Python packages:
 
-You should have Python installed.
+Once `pipx` is set up:
 
-    python -m pip install audiobook-tags
+```bash
+pipx install audiobook-tags
+```
+
+## Command Line Interface
 
 ## Usage
     audiobook-tags [-h] [--encoding ENCODING] [--extension EXTENSION] [--set-tag [SET_TAG ...]] [--track-num TRACK_NUM] [--title-prefix TITLE_PREFIX] [--dry] [folder]
