@@ -72,3 +72,7 @@ Note the dot before `./activate.sh`:
   . ./activate.sh
 
 We use [eyeD3](https://eyed3.readthedocs.io/en/latest/) to work with mp3 tags.
+
+## Coverage report
+* [Codecov](https://app.codecov.io/gh/andgineer/itunes-audiobook-from-mp3/tree/main/src%2Faudiobook_tags)
+* [Coveralls](https://coveralls.io/github/andgineer/itunes-audiobook-from-mp3)
