@@ -1,4 +1,5 @@
 ﻿[![Build Status](https://github.com/andgineer/itunes-audiobook-from-mp3/workflows/ci/badge.svg)](https://github.com/andgineer/itunes-audiobook-from-mp3/actions)
+[![Coverage](https://raw.githubusercontent.com/andgineer/itunes-audiobook-from-mp3/python-coverage-comment-action-data/badge.svg)](https://htmlpreview.github.io/?https://github.com/andgineer/itunes-audiobook-from-mp3/blob/python-coverage-comment-action-data/htmlcov/index.html)
 # Audiobooks from mp3 with broken tags
 
 Fix mp3 files tags to convert them into iTunes/iPhone audiobooks..
@@ -10,7 +11,7 @@ Details in [my blog's article](https://sorokin.engineer/posts/en/itunes_audioboo
 
 ## Installation
 Install using [`pipx`](https://pypa.github.io/pipx/) for isolated environments, which prevents interference
-with your system's Python packages:
+with your system's Python packages.
 
 Once `pipx` is set up:
 

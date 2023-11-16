@@ -1,8 +1,12 @@
+# test
 pytest
 pytest-cov
+
+# lint
 pylint
 mypy
 pre-commit
+
+# build
 pip-tools
 black
-pydocstyle

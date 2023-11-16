@@ -1,3 +1,9 @@
+exclude: |
+    (?x)(
+        tests/|
+        setup.py|
+        version.py
+    )
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
@@ -59,29 +65,36 @@ repos:
           # ignore module level import not at top of file (E402) to skip tests with uninstalled modules (pytest.importorskip)
           - --ignore=E501,E203,W503,E402
 
+
+  - repo: https://github.com/PyCQA/pydocstyle
+    rev: 6.3.0
+    hooks:
+      - id: pydocstyle
+        name: docstrings
+        entry: pydocstyle
+        language: python
+        args:
+          - --ignore=D100,D203,D405,D407,D213,D413
+
   - repo: local
     hooks:
       - id: mypy
-        name: mypy
-        entry: dmypy
+        name: MyPy
+        entry: |
+          mypy
+          --ignore-missing-imports
+          --install-types
+          --non-interactive
+          --strict
+          --implicit-reexport
+          --warn-unused-ignores
+          --cache-fine-grained
+          --no-namespace-packages
         files: \.py$
-        # pre-commit send full file list so exclude in .mypy.ini is ignored
-        exclude: (tests)
         language: python
-        require_serial: true
-        args: ["run", "--", "--strict", "--implicit-reexport", "--warn-unused-ignores", "--cache-fine-grained", "--no-namespace-packages"]
 
       - id: pylint
         name: Pylint
         entry: pylint --max-line-length=99 --ignore-imports=yes
         files: \.py$
-        exclude: (tests|version.py|setup.py)
         language: python
-
-      - id: pydocstyle
-        name: docstrings
-        entry: pydocstyle
-        language: python
-        exclude: (tests|version.py)
-        args:
-          - --ignore=D100,D203,D405,D407,D213,D413
