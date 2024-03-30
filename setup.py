@@ -10,20 +10,8 @@ with open("requirements.in") as f:
     requirements = f.read().splitlines()
 
 
-def get_version() -> str:
-    """Parse version from file content."""
-    with open("src/audiobook_tags/version.py") as f:
-        version_lines = f.read().splitlines()
-        for line in version_lines:
-            if line.startswith("VERSION"):
-                delim = '"' if '"' in line else "'"
-                return line.split(delim)[1]
-    raise RuntimeError("Unable to find version string.")
-
-
 setuptools.setup(
     name="audiobook-tags",
-    version=get_version(),
     author="Andrey Sorokin",
     author_email="andrey@sorokin.engineer",
     description="Fix mp3 tags to use in iTunes/iPhone audiobooks",
