@@ -38,7 +38,7 @@ jobs:
       run: uv pip install build "setuptools>=46.4.0" --python=${{ env.PRIMARY_PYTHON_VERSION }}
 
     - name: Build package
-      run: python -m pip wheel --no-deps --wheel-dir dist .
+      run: python -m build
 
     - name: Publish to PyPI
       if: startsWith(github.ref, 'refs/tags/v')
