@@ -1,4 +1,5 @@
 """Fix audiobook tags in mp3 files."""
+
 import pathlib
 from argparse import Namespace
 from typing import List, Optional
