@@ -22,8 +22,11 @@ ver-release:
 reqs:
 	pre-commit autoupdate
 	bash ./scripts/compile_requirements.sh
-	pip install -r requirements.dev.txt
-	pip install -r requirements.txt
+	uv pip install -r requirements.dev.txt
+
+.HELP: uv  ## Install or upgrade uv
+uv:
+	curl -LsSf https://astral.sh/uv/install.sh | sh
 
 .HELP: help  ## Display this message
 help:

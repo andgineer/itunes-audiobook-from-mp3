@@ -3,11 +3,8 @@ import setuptools
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-with open("requirements.txt") as f:
+with open("requirements.in") as f:
     requirements = f.read().splitlines()
-
-with open("requirements.dev.txt") as f:
-    tests_requirements = f.read().splitlines()
 
 from src.audiobook_tags import version
 
@@ -28,7 +25,6 @@ setuptools.setup(
     package_dir={"": "src"},
     packages=setuptools.find_packages(where="src"),
     install_requires=requirements,
-    tests_require=tests_requirements,
     python_requires=">=3.7",
     keywords="audiobook mp3-tags",
     classifiers=[
