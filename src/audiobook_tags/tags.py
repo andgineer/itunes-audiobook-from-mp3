@@ -1,3 +1,4 @@
+"""Fix audiobook tags in mp3 files."""
 import pathlib
 from argparse import Namespace
 from typing import List, Optional
@@ -19,10 +20,12 @@ def process_files(opts: Namespace) -> List[AudioFile]:
         try:
             audio_file = fix_file_tags(file_path, opts, track)
             result.append(audio_file)
-        except Exception as e:
+        except Exception as e:  # pylint: disable=broad-except
             print(f"Error processing {file_path}: {e}")
     if not result:
-        print(f"(!) No files were found in folder `{opts.folder}` with suffix {opts.suffix}.")
+        print(
+            f"(!) No files were found in folder `{opts.folder}` with suffix {opts.suffix}."
+        )
     elif any(isinstance(file, Exception) for file in result):
         print("(!) Errors occurred. No files were changed.")
     elif opts.dry:
@@ -72,7 +75,9 @@ def fix_file_tags(file_path: pathlib.Path, opts: Namespace, track: int) -> Audio
     return audio_file
 
 
-def get_files_list(folder: str, suffix: str, track_num: Optional[str]) -> List[pathlib.Path]:
+def get_files_list(
+    folder: str, suffix: str, track_num: Optional[str]
+) -> List[pathlib.Path]:
     """Load audio files filtered by extension.
 
     Sort files according `track_num` option.
@@ -83,13 +88,15 @@ def get_files_list(folder: str, suffix: str, track_num: Optional[str]) -> List[p
             paths = sorted(paths)
         elif track_num.startswith(OPT_TRACK_NUM_BY_TAG_TITLE):
             tag_name = track_num[len(OPT_TRACK_NUM_BY_TAG_TITLE) :]
-            paths = sorted(paths, key=lambda path: getattr(eyed3.load(path).tag, tag_name))
+            paths = sorted(
+                paths, key=lambda path: getattr(eyed3.load(path).tag, tag_name)
+            )
         else:
             raise ValueError(f"Unknown track_num option: {track_num}")
     return paths
 
 
-def fix_encoding(text: str, fix_encoding: str) -> str:
+def fix_encoding(text: str, fix_encoding: str) -> str:  # pylint: disable=redefined-outer-name
     """Decode from specified in CLI encoding."""
     if fix_encoding.lower() != OPT_ENCODING_NO_ENCODING.lower():
         try:

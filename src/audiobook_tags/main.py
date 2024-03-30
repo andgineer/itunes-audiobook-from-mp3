@@ -1,3 +1,4 @@
+"""CLI for fixing mp3 tags for iOS audiobooks."""
 import sys
 from argparse import ArgumentParser, Namespace
 from typing import Tuple
@@ -35,7 +36,10 @@ def get_opts() -> Tuple[Namespace, ArgumentParser]:
         "-e",
         default=DEFAULT_ENCODING,
         dest="encoding",
-        help=f'mp3 tags encoding. "{OPT_ENCODING_NO_ENCODING}" if you do not need mp3 tags encoding fix. By default "{DEFAULT_ENCODING}".',
+        help=(
+            f'mp3 tags encoding. "{OPT_ENCODING_NO_ENCODING}" if you do not need mp3 tags encoding fix. '
+            f'By default "{DEFAULT_ENCODING}".'
+        ),
     )
     parser.add_argument(
         "--tag",
@@ -53,7 +57,8 @@ def get_opts() -> Tuple[Namespace, ArgumentParser]:
         help=(
             f"""Sort files and set mp3 tag `track_num`:
             --num="{OPT_TRACK_NUM_BY_FILE_NAMES}" - sort by names;
-            --num="{OPT_TRACK_NUM_BY_TAG_TITLE}<TAG>" - sort by mp3 tag with name <TAG>. For example to sort by title tag use --num="{OPT_TRACK_NUM_BY_TAG_TITLE}title"."""
+            --num="{OPT_TRACK_NUM_BY_TAG_TITLE}<TAG>" - sort by mp3 tag with name <TAG>. 
+              For example to sort by title tag use --num="{OPT_TRACK_NUM_BY_TAG_TITLE}title"."""
         ),
     )
     parser.add_argument(
