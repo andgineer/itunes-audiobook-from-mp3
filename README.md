@@ -4,8 +4,8 @@
 
 | Name                        |    Stmts |     Miss |   Cover |   Missing |
 |---------------------------- | -------: | -------: | ------: | --------: |
-| src/audiobook\_tags/main.py |       33 |        6 |     82% |85, 94-97, 101 |
-| src/audiobook\_tags/tags.py |       66 |        7 |     89% |23-24, 26, 30, 95, 105-106 |
+| src/audiobook\_tags/main.py |       33 |        6 |     82% |91, 100-103, 107 |
+| src/audiobook\_tags/tags.py |       66 |        7 |     89% |24-25, 27, 31, 96, 106-107 |
 |                   **TOTAL** |   **99** |   **13** | **87%** |           |
 
 
