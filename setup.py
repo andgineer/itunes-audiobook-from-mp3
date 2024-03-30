@@ -1,16 +1,14 @@
 import setuptools
 
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
+with open("README.md", "r", encoding="utf-8") as f:
+    long_description = f.read()
 
 with open("requirements.in") as f:
     requirements = f.read().splitlines()
 
-from src.audiobook_tags import version
 
 setuptools.setup(
     name="audiobook-tags",
-    version=version.VERSION,
     author="Andrey Sorokin",
     author_email="andrey@sorokin.engineer",
     description="Fix mp3 tags to use in iTunes/iPhone audiobooks",
