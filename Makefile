@@ -1,5 +1,5 @@
 #!make
-VERSION := $(shell cat src/audiobook_tags/version.py | cut -d= -f2 | sed 's/\"//g; s/ //')
+VERSION := $(shell grep '__version__' src/audiobook_tags/__about__.py | cut -d '"' -f2)
 export VERSION
 
 .HELP: version ## Show the current version

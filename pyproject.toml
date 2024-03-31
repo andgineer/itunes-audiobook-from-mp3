@@ -1,0 +1,35 @@
+[build-system]
+requires = [ "hatchling",]
+build-backend = "hatchling.build"
+
+[project]
+name = "audiobook-tags"
+dynamic = [ "version",]
+description = "Fix mp3 tags to use in iTunes/iPhone audiobooks."
+keywords = [ "mp3", "tags", "audiobook", "itunes", "iphone",]
+classifiers = [ "Programming Language :: Python :: 3", "License :: OSI Approved :: MIT License", "Operating System :: OS Independent",]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [ "eyed3",]
+[[project.authors]]
+name = "Andrey Sorokin"
+email = "andrey@sorokin.engineer"
+
+[project.license]
+file = "LICENSE.txt"
+
+[project.urls]
+Homepage = "https://andgineer.github.io/audiobook-tags/"
+Documentation = "https://andgineer.github.io/audiobook-tags/"
+
+[tool.setuptools]
+packages = "find:"
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools.manifest]
+include = [ "README.md", "LICENSE.txt",]
+
+[tool.hatch.version]
+path = "src/audiobook_tags/__about__.py"
