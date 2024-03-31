@@ -2,11 +2,12 @@
 
 [Full report](https://htmlpreview.github.io/?https://github.com/andgineer/itunes-audiobook-from-mp3/blob/python-coverage-comment-action-data/htmlcov/index.html)
 
-| Name                        |    Stmts |     Miss |   Cover |   Missing |
-|---------------------------- | -------: | -------: | ------: | --------: |
-| src/audiobook\_tags/main.py |       33 |        6 |     82% |91, 100-103, 107 |
-| src/audiobook\_tags/tags.py |       66 |        7 |     89% |24-25, 27, 31, 96, 106-107 |
-|                   **TOTAL** |   **99** |   **13** | **87%** |           |
+| Name                                 |    Stmts |     Miss |   Cover |   Missing |
+|------------------------------------- | -------: | -------: | ------: | --------: |
+| src/audiobook\_tags/\_\_about\_\_.py |        1 |        1 |      0% |         1 |
+| src/audiobook\_tags/main.py          |       33 |        6 |     82% |91, 100-103, 107 |
+| src/audiobook\_tags/tags.py          |       66 |        7 |     89% |24-25, 27, 31, 96, 106-107 |
+|                            **TOTAL** |  **100** |   **14** | **86%** |           |
 
 
 ## Setup coverage badge
