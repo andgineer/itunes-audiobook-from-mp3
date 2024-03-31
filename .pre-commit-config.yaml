@@ -2,8 +2,7 @@ exclude: |
     (?x)(
         tests/|
         site/|
-        setup.py|
-        version.py
+        __about__.py
     )
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
