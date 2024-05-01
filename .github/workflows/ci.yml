@@ -67,9 +67,9 @@ jobs:
         name: python-coverage-comment-action
         path: python-coverage-comment-action.txt
 
-    - name: Upload coverage data to coveralls.io
-      if: ${{ matrix.python-version == env.PRIMARY_PYTHON_VERSION && matrix.platform == env.PRIMARY_PLATFORM }}
-      uses: coverallsapp/github-action@v2
+#    - name: Upload coverage data to coveralls.io
+#      if: ${{ matrix.python-version == env.PRIMARY_PYTHON_VERSION && matrix.platform == env.PRIMARY_PLATFORM }}
+#      uses: coverallsapp/github-action@v2
 
     - name: Upload Coverage to Codecov
       if: ${{ matrix.python-version == env.PRIMARY_PYTHON_VERSION && matrix.platform == env.PRIMARY_PLATFORM }}
