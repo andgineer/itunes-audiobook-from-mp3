@@ -5,9 +5,9 @@
 | Name                                 |    Stmts |     Miss |   Cover |   Missing |
 |------------------------------------- | -------: | -------: | ------: | --------: |
 | src/audiobook\_tags/\_\_about\_\_.py |        1 |        1 |      0% |         1 |
-| src/audiobook\_tags/main.py          |       33 |        6 |     82% |91, 100-103, 107 |
-| src/audiobook\_tags/tags.py          |       66 |        7 |     89% |24-25, 27, 31, 96, 106-107 |
-|                            **TOTAL** |  **100** |   **14** | **86%** |           |
+| src/audiobook\_tags/main.py          |       33 |        1 |     97% |       107 |
+| src/audiobook\_tags/tags.py          |       66 |        3 |     95% |31, 106-107 |
+|                            **TOTAL** |  **100** |    **5** | **95%** |           |
 
 
 ## Setup coverage badge
