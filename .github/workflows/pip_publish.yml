@@ -33,7 +33,7 @@ jobs:
         python-version: '3.x'
 
     - name: Install uv environment
-      uses: andgineer/uv-venv@v1
+      uses: andgineer/uv-venv@v3
     - name: Install build dependencies
       run: uv pip install build --python=${{ env.PRIMARY_PYTHON_VERSION }}
 
