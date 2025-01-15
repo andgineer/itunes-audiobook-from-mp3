@@ -8,7 +8,7 @@ eyed3==0.9.7
     # via -r requirements.in
 filetype==1.2.0
     # via eyed3
-packaging==24.1
+packaging==24.2
     # via deprecation
 toml==0.10.2
     # via coverage
