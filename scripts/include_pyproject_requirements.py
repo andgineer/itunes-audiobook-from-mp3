@@ -17,18 +17,16 @@ REQUIREMENTS_FILE_NAME = "requirements.txt"
 
 def main(requirements_file_name: str, section_path: str) -> None:
     """Include requirements.txt in pyproject.toml project.dependencies array."""
-    with open(requirements_file_name, "r", encoding="utf8") as f:
+    with open(requirements_file_name, encoding="utf8") as f:
         requirements = [
-            line.strip()
-            for line in f
-            if line.strip() and not line.lstrip().startswith("#")
+            line.strip() for line in f if line.strip() and not line.lstrip().startswith("#")
         ]
     print(
         f"From {requirements_file_name} read requirements:"
-        f"\n{requirements[:10]}...\n...{len(requirements)} total"
+        f"\n{requirements[:10]}...\n...{len(requirements)} total",
     )
 
-    with open(PROJECT_METADATA_FILE_NAME, "r", encoding="utf8") as f:
+    with open(PROJECT_METADATA_FILE_NAME, encoding="utf8") as f:
         pyproject_data = toml.load(f)
 
     section_keys = section_path.split(".")
@@ -38,7 +36,7 @@ def main(requirements_file_name: str, section_path: str) -> None:
 
     print(
         f"To section `{section_path}` array `dependencies`"
-        f" of `{PROJECT_METADATA_FILE_NAME}`, project `{pyproject_data['project']['name']}`.\n"
+        f" of `{PROJECT_METADATA_FILE_NAME}`, project `{pyproject_data['project']['name']}`.\n",
     )
     target_section["dependencies"] = requirements
 

@@ -5,7 +5,9 @@ import pytest
 from audiobook_tags.tags import (
     OPT_TRACK_NUM_BY_FILE_NAMES,
     OPT_TRACK_NUM_BY_TAG_TITLE,
-    process_files, fix_file_tags, get_files_list,
+    process_files,
+    fix_file_tags,
+    get_files_list,
 )
 
 
@@ -66,6 +68,7 @@ def test_process_files_file_error(opts):
             result = process_files(opts)
             assert len(result) == 0
 
+
 def test_fix_file_tags_with_errors():
     mock_audio_file = Mock()
     mock_audio_file.tag.title = "test"
@@ -79,11 +82,12 @@ def test_fix_file_tags_with_errors():
             set_tags={},
             encoding="cp1251",  # Using valid encoding
             track_num=None,
-            title_prefix=""
+            title_prefix="",
         )
         result = fix_file_tags("test.mp3", opts, 1)
         assert result == mock_audio_file
         assert result.tag.genre == "Audiobook"
+
 
 def test_fix_file_tags_invalid_encoding():
     mock_audio_file = Mock()
@@ -93,14 +97,10 @@ def test_fix_file_tags_invalid_encoding():
     mock_audio_file.tag.album_artist = None
 
     with patch("eyed3.load", return_value=mock_audio_file):
-        opts = Mock(
-            set_tags={},
-            encoding="invalid_encoding",
-            track_num=None,
-            title_prefix=""
-        )
+        opts = Mock(set_tags={}, encoding="invalid_encoding", track_num=None, title_prefix="")
         with pytest.raises(LookupError):
             fix_file_tags("test.mp3", opts, 1)
+
 
 def test_get_files_list_invalid_track_num():
     with pytest.raises(ValueError, match="Unknown track_num option: invalid"):

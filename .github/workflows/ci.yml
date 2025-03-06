@@ -20,10 +20,10 @@ jobs:
       PRIMARY_PYTHON_VERSION: '3.12'
       PRIMARY_PLATFORM: 'ubuntu-latest'
       PYTEST_CMD: >
-        python -m pytest 
-        --junitxml=pytest.xml 
-        --cov-report=term-missing:skip-covered 
-        --cov=src 
+        python -m pytest
+        --junitxml=pytest.xml
+        --cov-report=term-missing:skip-covered
+        --cov=src
         tests/
     runs-on: ${{ matrix.platform }}
     permissions:
@@ -61,7 +61,7 @@ jobs:
         MINIMUM_ORANGE: 70
 
     - name: Store Pull Request comment to be posted
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: steps.coverage_comment.outputs.COMMENT_FILE_WRITTEN == 'true'
       with:
         name: python-coverage-comment-action
@@ -74,4 +74,3 @@ jobs:
     - name: Upload Coverage to Codecov
       if: ${{ matrix.python-version == env.PRIMARY_PYTHON_VERSION && matrix.platform == env.PRIMARY_PLATFORM }}
       uses: codecov/codecov-action@v3
-

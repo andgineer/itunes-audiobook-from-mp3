@@ -2,6 +2,8 @@ from unittest.mock import Mock, patch
 
 from audiobook_tags.main import get_opts, main
 
+import pytest
+
 
 @patch("audiobook_tags.main.process_files")
 @patch("audiobook_tags.main.get_opts")
@@ -32,10 +34,6 @@ def test_get_opts():
         assert opts.set_tags == {"tag1": "value1", "tag2": "value2"}
 
 
-from unittest.mock import Mock, patch
-import pytest
-from audiobook_tags.main import get_opts, main
-
 @patch("audiobook_tags.main.process_files")
 @patch("audiobook_tags.main.get_opts")
 def test_main_success(mock_get_opts, mock_process_files):
@@ -43,6 +41,7 @@ def test_main_success(mock_get_opts, mock_process_files):
     main()
     assert mock_get_opts.called
     assert mock_process_files.called
+
 
 @patch("audiobook_tags.main.process_files")
 @patch("audiobook_tags.main.get_opts")
@@ -52,6 +51,7 @@ def test_main_value_error(mock_get_opts, mock_process_files):
     with pytest.raises(SystemExit) as exc:
         main()
     assert exc.value.code == 1
+
 
 def test_get_opts_default_values():
     with patch("sys.argv", ["script.py"]):
@@ -65,17 +65,21 @@ def test_get_opts_default_values():
         assert not opts.dry
         assert opts.set_tags == {}
 
+
 def test_get_opts_invalid_tag_format():
     with patch("sys.argv", ["script.py", "--tag", "invalid_format"]):
         with pytest.raises(IndexError):
             get_opts()
 
-@pytest.mark.parametrize("track_num,expected_prefix", [
-    (None, ""),
-    ("name", "{track:04} - "),
-])
+
+@pytest.mark.parametrize(
+    "track_num,expected_prefix",
+    [
+        (None, ""),
+        ("name", "{track:04} - "),
+    ],
+)
 def test_get_opts_title_prefix(track_num, expected_prefix):
     with patch("sys.argv", ["script.py"] + (["--num", track_num] if track_num else [])):
         opts, _ = get_opts()
         assert opts.title_prefix == expected_prefix
-        

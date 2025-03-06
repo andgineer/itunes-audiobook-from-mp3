@@ -2,7 +2,6 @@
 
 import sys
 from argparse import ArgumentParser, Namespace
-from typing import Tuple
 
 from audiobook_tags.tags import (
     OPT_ENCODING_NO_ENCODING,
@@ -15,7 +14,7 @@ DEFAULT_ENCODING = "cp1251"
 FILE_SUFFIX_DEFAULT = "mp3"
 
 
-def get_opts() -> Tuple[Namespace, ArgumentParser]:
+def get_opts() -> tuple[Namespace, ArgumentParser]:
     """Get CLI options."""
     parser = ArgumentParser(description="Fixes mp3 tags for iOS audiobooks.")
     parser.add_argument(
@@ -60,7 +59,7 @@ def get_opts() -> Tuple[Namespace, ArgumentParser]:
             f"""Sort files and set mp3 tag `track_num`:
             --num="{OPT_TRACK_NUM_BY_FILE_NAMES}" - sort by names;
             --num="{OPT_TRACK_NUM_BY_TAG_TITLE}<TAG>" - sort by mp3 tag with name <TAG>.
-              For example to sort by title tag use 
+              For example to sort by title tag use
               --num="{OPT_TRACK_NUM_BY_TAG_TITLE}title"."""
         ),
     )
@@ -70,8 +69,7 @@ def get_opts() -> Tuple[Namespace, ArgumentParser]:
         default=None,
         dest="title_prefix",
         help=(
-            "Add prefix to title tags. By default `{track:04} - ` "
-            "if `--num` and no prefix if not."
+            "Add prefix to title tags. By default `{track:04} - ` if `--num` and no prefix if not."
         ),
     )
     parser.add_argument(
