@@ -15,26 +15,38 @@ OPT_TRACK_NUM_BY_FILE_NAMES = "name"
 def process_files(opts: Namespace) -> list[AudioFile]:
     """Scan files and fix mp3 tags."""
     paths = get_files_list(opts.folder, opts.suffix, opts.track_num)
-    result = []
+    successful_files = []
+    failed_files = []
     track = 1
+
     for file_path in paths:
         try:
             audio_file = fix_file_tags(file_path, opts, track)
-            result.append(audio_file)
+            successful_files.append(audio_file)
+            track += 1  # Only increment on success
         except Exception as e:  # noqa: BLE001
             print(f"Error processing {file_path}: {e}")
-    if not result:
-        print(
-            f"(!) No files were found in folder `{opts.folder}` with suffix {opts.suffix}.",
-        )
-    elif any(isinstance(file, Exception) for file in result):
-        print("(!) Errors occurred. No files were changed.")
+            failed_files.append((file_path, str(e)))
+
+    # Summary reporting
+    total_files = len(paths)
+    if total_files == 0:
+        print(f"(!) No files were found in folder `{opts.folder}` with suffix {opts.suffix}.")
+    elif failed_files:
+        print(f"(!) {len(failed_files)} of {total_files} files failed to process.")
+        if not opts.dry:
+            print("Successfully processed files were saved.")
     elif opts.dry:
-        print("(!) Dry run. No files were changed.")
+        print(f"(!) Dry run. {len(successful_files)} files would be modified.")
     else:
-        for audio_file in result:
+        print(f"Successfully processed {len(successful_files)} files.")
+
+    # Only save successful files
+    if not opts.dry and successful_files:
+        for audio_file in successful_files:
             audio_file.tag.save(version=eyed3.id3.ID3_DEFAULT_VERSION, encoding="utf-8")
-    return result
+
+    return successful_files
 
 
 def fix_file_tags(file_path: pathlib.Path, opts: Namespace, track: int) -> AudioFile:

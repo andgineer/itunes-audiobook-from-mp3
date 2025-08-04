@@ -2,7 +2,7 @@
 [![Coverage](https://raw.githubusercontent.com/andgineer/itunes-audiobook-from-mp3/python-coverage-comment-action-data/badge.svg)](https://htmlpreview.github.io/?https://github.com/andgineer/itunes-audiobook-from-mp3/blob/python-coverage-comment-action-data/htmlcov/index.html)
 # Audiobooks from mp3 with broken tags
 
-Fix mp3 files tags to convert them into iTunes/iPhone audiobooks..
+Fix mp3 files tags to convert them into iTunes/iPhone audiobooks.
 
 - Fixes sort order.
 - Supports messed encoding like cyrillic Win1251.
