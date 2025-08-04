@@ -6,8 +6,8 @@
 |------------------------------------- | -------: | -------: | ------: | --------: |
 | src/audiobook\_tags/\_\_about\_\_.py |        1 |        1 |      0% |         1 |
 | src/audiobook\_tags/main.py          |       32 |        1 |     97% |       105 |
-| src/audiobook\_tags/tags.py          |       66 |        3 |     95% |31, 110-111 |
-|                            **TOTAL** |   **99** |    **5** | **95%** |           |
+| src/audiobook\_tags/tags.py          |       74 |        2 |     97% |   122-123 |
+|                            **TOTAL** |  **107** |    **4** | **96%** |           |
 
 
 ## Setup coverage badge
