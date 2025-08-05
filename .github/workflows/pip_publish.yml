@@ -30,7 +30,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.x'
+        python-version: ${{ env.PRIMARY_PYTHON_VERSION  }}
 
     - name: Install uv environment
       uses: andgineer/uv-venv@v3
