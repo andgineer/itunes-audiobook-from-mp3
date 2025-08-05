@@ -13,4 +13,5 @@ def opts():
         dry=False,
         title_prefix="{track:04} - ",
         track_num=None,
+        verbose=False,
     )

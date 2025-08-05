@@ -45,6 +45,7 @@ pipx install audiobook-tags
       --prefix TITLE_PREFIX, -p TITLE_PREFIX
                             Add prefix to title tags. By default `{track:04} - ` if `--num` and no prefix if not.
       --dry, -d             Dry run without changing files.
+      --version, -v         Print verbose output including list of processed files.
 
 ## Example:
 

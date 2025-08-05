@@ -22,6 +22,9 @@ file = "LICENSE.txt"
 Homepage = "https://andgineer.github.io/audiobook-tags/"
 Documentation = "https://andgineer.github.io/audiobook-tags/"
 
+[project.scripts]
+audiobook = "audiobook_tags.main:main"
+
 [tool.setuptools]
 packages = "find:"
 

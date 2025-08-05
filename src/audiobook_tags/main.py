@@ -80,6 +80,14 @@ def get_opts() -> tuple[Namespace, ArgumentParser]:
         default=False,
         help="Dry run without changing files.",
     )
+    parser.add_argument(
+        "--verbose",
+        "-v",
+        dest="verbose",
+        action="store_true",
+        default=False,
+        help="Print verbose output including list of processed files.",
+    )
     opts = parser.parse_args()
     opts.set_tags = {}
     if opts.set_tag:
