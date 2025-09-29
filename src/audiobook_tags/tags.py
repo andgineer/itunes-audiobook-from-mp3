@@ -7,9 +7,9 @@ from typing import Optional
 import eyed3
 from eyed3 import AudioFile
 
-OPT_ENCODING_NO_ENCODING = "none"
-OPT_TRACK_NUM_BY_TAG_TITLE = "tag-"
-OPT_TRACK_NUM_BY_FILE_NAMES = "name"
+OPT_ENCODING_NO_ENCODING: str = "none"
+OPT_TRACK_NUM_BY_TAG_TITLE: str = "tag-"
+OPT_TRACK_NUM_BY_FILE_NAMES: str = "name"
 
 
 def _print_file_list(paths: list[pathlib.Path], verbose: bool) -> None:
@@ -52,9 +52,9 @@ def _print_summary(
 def process_files(opts: Namespace) -> list[AudioFile]:
     """Scan files and fix mp3 tags."""
     paths = get_files_list(opts.folder, opts.suffix, opts.track_num, opts.verbose)
-    successful_files = []
-    failed_files = []
-    track = 1
+    successful_files: list[AudioFile] = []
+    failed_files: list[tuple[pathlib.Path, str]] = []
+    track: int = 1
 
     _print_file_list(paths, opts.verbose)
 
@@ -79,7 +79,7 @@ def process_files(opts: Namespace) -> list[AudioFile]:
 
 def fix_file_tags(file_path: pathlib.Path, opts: Namespace, track: int) -> AudioFile:
     """Fix tags for one file."""
-    audio_file = eyed3.load(file_path)
+    audio_file: AudioFile = eyed3.load(file_path)
     if opts.verbose:
         print(f"Processing: {file_path}")
         print(f"  Original title: {audio_file.tag.title}")
@@ -141,7 +141,7 @@ def get_files_list(
 
     Sort files according `track_num` option.
     """
-    paths = list(pathlib.Path(folder).glob(f"**/*.{suffix}"))
+    paths: list[pathlib.Path] = list(pathlib.Path(folder).glob(f"**/*.{suffix}"))
 
     if verbose:
         print(f"Scanning folder: {folder}")
@@ -153,7 +153,7 @@ def get_files_list(
                 print("Sorting files by name...")
             paths = sorted(paths)
         elif track_num.startswith(OPT_TRACK_NUM_BY_TAG_TITLE):
-            tag_name = track_num[len(OPT_TRACK_NUM_BY_TAG_TITLE) :]
+            tag_name: str = track_num[len(OPT_TRACK_NUM_BY_TAG_TITLE) :]
             if verbose:
                 print(f"Sorting files by tag: {tag_name}...")
             paths = sorted(

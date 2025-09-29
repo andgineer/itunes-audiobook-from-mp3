@@ -14,41 +14,42 @@ This is a Python CLI tool that fixes MP3 file tags to make them compatible with 
 
 **Environment activation** (required before any development work):
 ```bash
-. ./activate.sh
+source ./activate.sh
 ```
 This script creates a Python 3.12 virtual environment using `uv` and installs dependencies.
+
+**IMPORTANT**: Always activate the virtual environment before running any commands. Use `source ./activate.sh` before each command.
 
 ## Common Commands
 
 **Run tests**:
 ```bash
-pytest
-pytest tests/test_specific.py  # Run specific test file
+source ./activate.sh && pytest
+source ./activate.sh && pytest tests/test_specific.py  # Run specific test file
 ```
 
 **Linting and formatting**:
 ```bash
-pre-commit run --all-files  # Run all pre-commit hooks (ruff + mypy)
-ruff check src/  # Manual ruff check
-ruff format src/  # Manual ruff format
-mypy src/  # Manual type checking
+source ./activate.sh && pre-commit run --all-files  # Run all pre-commit hooks (ruff + mypy)
 ```
+
+**IMPORTANT**: Always use `pre-commit run --all-files` for code quality checks. Never run ruff or mypy directly.
 
 **Build and package**:
 ```bash
-python -m build  # Build wheel and source distribution
+source ./activate.sh && python -m build  # Build wheel and source distribution
 ```
 
 **Requirements management**:
 ```bash
-make reqs  # Update requirements and pre-commit hooks
+source ./activate.sh && make reqs  # Update requirements and pre-commit hooks
 ```
 
 **Version management**:
 ```bash
-make ver-bug     # Bump patch version
-make ver-feature # Bump minor version
-make ver-release # Bump major version
+source ./activate.sh && make ver-bug     # Bump patch version
+source ./activate.sh && make ver-feature # Bump minor version
+source ./activate.sh && make ver-release # Bump major version
 ```
 
 ## Architecture

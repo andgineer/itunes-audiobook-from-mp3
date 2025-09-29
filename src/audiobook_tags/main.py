@@ -10,8 +10,8 @@ from audiobook_tags.tags import (
     process_files,
 )
 
-DEFAULT_ENCODING = "cp1251"
-FILE_SUFFIX_DEFAULT = "mp3"
+DEFAULT_ENCODING: str = "cp1251"
+FILE_SUFFIX_DEFAULT: str = "mp3"
 
 
 def get_opts() -> tuple[Namespace, ArgumentParser]:
