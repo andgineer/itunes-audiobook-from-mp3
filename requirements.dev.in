@@ -7,7 +7,7 @@ pytest-cov
 # lint
 pyrefly
 pre-commit
-types-eyed3
+types-eyed3; python_version >= "3.12"
 
 # build
 -e .
