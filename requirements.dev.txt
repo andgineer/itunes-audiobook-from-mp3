@@ -2,16 +2,12 @@
 #    uv pip compile requirements.dev.in --output-file=requirements.dev.txt
 -e .
     # via -r requirements.dev.in
-astroid==4.0.2
-    # via pylint
 cfgv==3.5.0
     # via pre-commit
 coverage==7.13.0
     # via pytest-cov
 deprecation==2.1.0
     # via eyed3
-dill==0.4.0
-    # via pylint
 distlib==0.4.0
     # via virtualenv
 eyed3==0.9.9
@@ -28,16 +24,6 @@ identify==2.6.15
     # via pre-commit
 iniconfig==2.3.0
     # via pytest
-isort==7.0.0
-    # via pylint
-librt==0.7.5
-    # via mypy
-mccabe==0.7.0
-    # via pylint
-mypy==1.19.1
-    # via -r requirements.dev.in
-mypy-extensions==1.1.0
-    # via mypy
 nodeenv==1.10.0
     # via pre-commit
 packaging==25.0
@@ -46,13 +32,9 @@ packaging==25.0
     #   hatchling
     #   pytest
 pathspec==0.12.1
-    # via
-    #   hatchling
-    #   mypy
+    # via hatchling
 platformdirs==4.5.1
-    # via
-    #   pylint
-    #   virtualenv
+    # via virtualenv
 pluggy==1.6.0
     # via
     #   hatchling
@@ -62,7 +44,7 @@ pre-commit==4.5.1
     # via -r requirements.dev.in
 pygments==2.19.2
     # via pytest
-pylint==4.0.4
+pyrefly==0.46.1
     # via -r requirements.dev.in
 pytest==9.0.2
     # via
@@ -74,11 +56,7 @@ pyyaml==6.0.3
     # via pre-commit
 toml==0.10.2
     # via -r requirements.dev.in
-tomlkit==0.13.3
-    # via pylint
 trove-classifiers==2025.12.1.14
     # via hatchling
-typing-extensions==4.15.0
-    # via mypy
 virtualenv==20.35.4
     # via pre-commit

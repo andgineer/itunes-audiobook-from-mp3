@@ -5,6 +5,7 @@ from argparse import Namespace
 from typing import Optional
 
 import eyed3
+import eyed3.id3
 from eyed3 import AudioFile
 
 OPT_ENCODING_NO_ENCODING: str = "none"
@@ -72,22 +73,24 @@ def process_files(opts: Namespace) -> list[AudioFile]:
     # Only save successful files
     if not opts.dry and successful_files:
         for audio_file in successful_files:
-            audio_file.tag.save(version=eyed3.id3.ID3_DEFAULT_VERSION, encoding="utf-8")
+            audio_file.tag.save(version=eyed3.id3.ID3_DEFAULT_VERSION, encoding="utf-8")  # type: ignore[attr-defined]
 
     return successful_files
 
 
 def fix_file_tags(file_path: pathlib.Path, opts: Namespace, track: int) -> AudioFile:
     """Fix tags for one file."""
-    audio_file: AudioFile = eyed3.load(file_path)
+    audio_file = eyed3.load(file_path)
+    if audio_file is None:
+        raise ValueError(f"Failed to load audio file: {file_path}")
     if opts.verbose:
         print(f"Processing: {file_path}")
         print(f"  Original title: {audio_file.tag.title}")
     else:
         print(file_path, audio_file.tag.title)
 
-    audio_file.tag.genre = "Audiobook"
-    audio_file.tag.mediatype = "Audiobook"
+    audio_file.tag.genre = "Audiobook"  # type: ignore[attr-defined]
+    audio_file.tag.mediatype = "Audiobook"  # type: ignore[attr-defined]
     # audio_file.tag.compilation = '1'
     # audiofile.tag.images.set(3, open('cover.jpg','rb').read(), 'image/jpeg')
 
@@ -103,8 +106,8 @@ def fix_file_tags(file_path: pathlib.Path, opts: Namespace, track: int) -> Audio
 
     if opts.track_num:
         audio_file.tag.track_num = track
-        audio_file.tag.part = f"{track:04d}"
-        audio_file.tag.chapter = track
+        audio_file.tag.part = f"{track:04d}"  # type: ignore[attr-defined]
+        audio_file.tag.chapter = track  # type: ignore[attr-defined]
         audio_file.tag.title = (opts.title_prefix + "{name}").format(
             name=audio_file.tag.title,
             track=track,
@@ -115,9 +118,9 @@ def fix_file_tags(file_path: pathlib.Path, opts: Namespace, track: int) -> Audio
         print(f"  Updated title: {audio_file.tag.title}")
         print(f"  Artist: {audio_file.tag.artist}")
         print(f"  Album: {audio_file.tag.album} by {audio_file.tag.album_artist}")
-        print(f"  Genre: {audio_file.tag.genre}")
+        print(f"  Genre: {audio_file.tag.genre}")  # type: ignore[attr-defined]
         if opts.track_num:
-            print(f"  Track: {audio_file.tag.track_num}, Part: {audio_file.tag.part}")
+            print(f"  Track: {audio_file.tag.track_num}, Part: {audio_file.tag.part}")  # type: ignore[attr-defined]
         print()
     else:
         print(f"--> {audio_file.tag.title} ", end="")
@@ -125,7 +128,7 @@ def fix_file_tags(file_path: pathlib.Path, opts: Namespace, track: int) -> Audio
             print(
                 f"by {audio_file.tag.artist}, "
                 f"album {audio_file.tag.album} by {audio_file.tag.album_artist}, "
-                f"genre {audio_file.tag.genre}, part {audio_file.tag.part}",
+                f"genre {audio_file.tag.genre}, part {audio_file.tag.part}",  # type: ignore[attr-defined]
             )
         print()
     return audio_file
@@ -156,10 +159,14 @@ def get_files_list(
             tag_name: str = track_num[len(OPT_TRACK_NUM_BY_TAG_TITLE) :]
             if verbose:
                 print(f"Sorting files by tag: {tag_name}...")
-            paths = sorted(
-                paths,
-                key=lambda path: getattr(eyed3.load(path).tag, tag_name),
-            )
+
+            def get_tag_value(path: pathlib.Path) -> str:
+                audio = eyed3.load(path)
+                if audio is None or audio.tag is None:
+                    return ""
+                return str(getattr(audio.tag, tag_name, ""))
+
+            paths = sorted(paths, key=get_tag_value)
         else:
             raise ValueError(f"Unknown track_num option: {track_num}")
     return paths
