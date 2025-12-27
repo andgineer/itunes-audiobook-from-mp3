@@ -3,6 +3,7 @@ from unittest.mock import MagicMock, patch, Mock
 import pytest
 
 from audiobook_tags.tags import (
+    GENRE_AUDIOBOOK,
     OPT_TRACK_NUM_BY_FILE_NAMES,
     OPT_TRACK_NUM_BY_TAG_TITLE,
     process_files,
@@ -19,10 +20,7 @@ def eye3d_load(file_path):
     mock_audio_file.tag.album = "an album"
     mock_audio_file.tag.album_artist = "an album artist"
     mock_audio_file.tag.genre = None
-    mock_audio_file.tag.mediatype = None
     mock_audio_file.tag.track_num = None
-    mock_audio_file.tag.part = None
-    mock_audio_file.tag.chapter = None
     return mock_audio_file
 
 
@@ -86,7 +84,7 @@ def test_fix_file_tags_with_errors():
         )
         result = fix_file_tags("test.mp3", opts, 1)
         assert result == mock_audio_file
-        assert result.tag.genre == "Audiobook"
+        assert result.tag.genre == GENRE_AUDIOBOOK
 
 
 def test_fix_file_tags_invalid_encoding():

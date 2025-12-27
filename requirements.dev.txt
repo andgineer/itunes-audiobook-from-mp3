@@ -58,5 +58,7 @@ toml==0.10.2
     # via -r requirements.dev.in
 trove-classifiers==2025.12.1.14
     # via hatchling
+types-eyed3==0.9.7.20250306
+    # via -r requirements.dev.in
 virtualenv==20.35.4
     # via pre-commit

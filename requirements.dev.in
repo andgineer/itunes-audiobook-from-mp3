@@ -7,6 +7,7 @@ pytest-cov
 # lint
 pyrefly
 pre-commit
+types-eyed3
 
 # build
 -e .
