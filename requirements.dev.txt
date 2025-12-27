@@ -2,80 +2,83 @@
 #    uv pip compile requirements.dev.in --output-file=requirements.dev.txt
 -e .
     # via -r requirements.dev.in
-astroid==3.3.8
+astroid==4.0.2
     # via pylint
-cfgv==3.4.0
+cfgv==3.5.0
     # via pre-commit
-coverage==5.5
-    # via
-    #   eyed3
-    #   pytest-cov
+coverage==7.13.0
+    # via pytest-cov
 deprecation==2.1.0
     # via eyed3
-dill==0.3.9
+dill==0.4.0
     # via pylint
-distlib==0.3.9
+distlib==0.4.0
     # via virtualenv
-eyed3==0.9.7
+eyed3==0.9.9
     # via
     #   -r requirements.in
     #   audiobook-tags
-filelock==3.16.1
+filelock==3.20.1
     # via virtualenv
 filetype==1.2.0
     # via eyed3
-hatchling==1.27.0
+hatchling==1.28.0
     # via -r requirements.dev.in
-identify==2.6.5
+identify==2.6.15
     # via pre-commit
-iniconfig==2.0.0
+iniconfig==2.3.0
     # via pytest
-isort==5.13.2
+isort==7.0.0
     # via pylint
+librt==0.7.5
+    # via mypy
 mccabe==0.7.0
     # via pylint
-mypy==1.14.1
+mypy==1.19.1
     # via -r requirements.dev.in
-mypy-extensions==1.0.0
+mypy-extensions==1.1.0
     # via mypy
-nodeenv==1.9.1
+nodeenv==1.10.0
     # via pre-commit
-packaging==24.2
+packaging==25.0
     # via
     #   deprecation
     #   hatchling
     #   pytest
 pathspec==0.12.1
-    # via hatchling
-platformdirs==4.3.6
+    # via
+    #   hatchling
+    #   mypy
+platformdirs==4.5.1
     # via
     #   pylint
     #   virtualenv
-pluggy==1.5.0
+pluggy==1.6.0
     # via
     #   hatchling
     #   pytest
-pre-commit==4.0.1
+    #   pytest-cov
+pre-commit==4.5.1
     # via -r requirements.dev.in
-pylint==3.3.3
+pygments==2.19.2
+    # via pytest
+pylint==4.0.4
     # via -r requirements.dev.in
-pytest==8.3.4
+pytest==9.0.2
     # via
     #   -r requirements.dev.in
     #   pytest-cov
-pytest-cov==5.0.0
+pytest-cov==7.0.0
     # via -r requirements.dev.in
-pyyaml==6.0.2
+pyyaml==6.0.3
     # via pre-commit
 toml==0.10.2
-    # via
-    #   -r requirements.dev.in
-    #   coverage
-tomlkit==0.13.2
+    # via -r requirements.dev.in
+tomlkit==0.13.3
     # via pylint
-trove-classifiers==2025.1.10.15
+trove-classifiers==2025.12.1.14
     # via hatchling
-typing-extensions==4.12.2
+typing-extensions==4.15.0
     # via mypy
-virtualenv==20.28.1
+virtualenv==20.35.4
     # via pre-commit
