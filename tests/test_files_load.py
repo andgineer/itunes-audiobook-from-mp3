@@ -1,4 +1,4 @@
-from unittest.mock import MagicMock, patch, Mock
+from unittest.mock import MagicMock, Mock, patch
 
 import pytest
 
@@ -6,9 +6,9 @@ from audiobook_tags.tags import (
     GENRE_AUDIOBOOK,
     OPT_TRACK_NUM_BY_FILE_NAMES,
     OPT_TRACK_NUM_BY_TAG_TITLE,
-    process_files,
     fix_file_tags,
     get_files_list,
+    process_files,
 )
 
 

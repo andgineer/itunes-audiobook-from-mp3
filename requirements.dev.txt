@@ -4,67 +4,68 @@
     # via -r requirements.dev.in
 cfgv==3.5.0
     # via pre-commit
-coverage==7.13.5
+coverage==7.16.2
     # via pytest-cov
 deprecation==2.1.0
     # via eyed3
-distlib==0.4.0
+distlib==0.4.4
     # via virtualenv
 eyed3==0.9.9
     # via
     #   -r requirements.in
     #   audiobook-tags
-filelock==3.25.2
+filelock==4.2.4
     # via
     #   python-discovery
     #   virtualenv
 filetype==1.2.0
     # via eyed3
-hatchling==1.29.0
+hatchling==1.32.4
     # via -r requirements.dev.in
-identify==2.6.18
+identify==2.6.20
     # via pre-commit
-iniconfig==2.3.0
+iniconfig==2.3.1
     # via pytest
-nodeenv==1.10.0
+nodeenv==1.11.0
     # via pre-commit
-packaging==26.0
+packaging==26.3
     # via
     #   deprecation
     #   hatchling
     #   pytest
-pathspec==1.0.4
-    # via hatchling
-platformdirs==4.9.6
-    # via
-    #   python-discovery
     #   virtualenv
-pluggy==1.6.0
+pathspec==1.1.1
+    # via hatchling
+platformdirs==4.13.5
+    # via virtualenv
+pluggy==1.7.0
     # via
     #   hatchling
     #   pytest
     #   pytest-cov
-pre-commit==4.5.1
+pre-commit==4.7.0
     # via -r requirements.dev.in
-pygments==2.20.0
+pygments==2.21.0
     # via pytest
-pyrefly==0.60.0
+pyrefly==1.4.0
     # via -r requirements.dev.in
-pytest==9.0.3
+pytest==9.1.1
     # via
     #   -r requirements.dev.in
     #   pytest-cov
 pytest-cov==7.1.0
     # via -r requirements.dev.in
-python-discovery==1.2.2
+python-discovery==1.6.4
     # via virtualenv
 pyyaml==6.0.3
     # via pre-commit
 toml==0.10.2
     # via -r requirements.dev.in
-trove-classifiers==2026.1.14.14
+tomlkit==0.15.2
+    # via hatchling
+trove-classifiers==2026.9.21.13
     # via hatchling
 types-eyed3==0.9.7.20250306 ; python_version >= "3.12"
     # via -r requirements.dev.in
-virtualenv==21.2.0
+virtualenv==21.14.12
     # via pre-commit

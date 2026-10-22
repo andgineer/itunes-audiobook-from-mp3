@@ -28,6 +28,10 @@ audiobook = "audiobook_tags.main:main"
 [tool.setuptools]
 packages = "find:"
 
+[tool.pyrefly]
+project-includes = [ "**/*.py*", "**/*.ipynb",]
+search-path = [ "src",]
+
 [tool.setuptools.package-dir]
 "" = "src"
 

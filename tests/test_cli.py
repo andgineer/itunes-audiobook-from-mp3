@@ -1,8 +1,8 @@
 from unittest.mock import Mock, patch
 
-from audiobook_tags.main import get_opts, main
-
 import pytest
+
+from audiobook_tags.main import get_opts, main
 
 
 @patch("audiobook_tags.main.process_files")
